@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.dataset);
+    // console.log(this.dataset);
 
     const elements = this.chartContainer.nativeElement;
     d3.select(elements).append('svg')
@@ -71,8 +71,16 @@ export class AppComponent implements OnInit {
 
     d3.selectAll('circle').data(this.dataset)
       .attr('cy', (datum, index) => {
-        console.log(index);
+        // console.log(index);
         return yScale(datum.distance);
       });
+
+    // scaleTime(): mapea valor dos dados com pontos visuais numéricos; 
+    const xScale = d3.scaleTime();
+    xScale.range([0, this.width]);
+    xScale.domain([new Date('2019-10-1'), new Date('2019-10-31')]);
+    // console.log(xScale(new Date('2019-10-15')));
+    // console.log(xScale.invert(371.54811715481173));
+
   }
 }
