@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class AppComponent implements OnInit {
-  title = 'Angular7 and Chart D3';
+
+  @ViewChild('chart') private chartContainer: ElementRef;
 
   ngOnInit(): void {
-    console.log(d3);
+    const elements = this.chartContainer.nativeElement;
+    d3.select(elements).append('svg');
   }
 }
