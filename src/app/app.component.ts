@@ -11,9 +11,13 @@ import * as d3 from 'd3';
 export class AppComponent implements OnInit {
 
   @ViewChild('chart') private chartContainer: ElementRef;
+  width = '800px';
+  height = '600px';
 
   ngOnInit(): void {
     const elements = this.chartContainer.nativeElement;
-    d3.select(elements).append('svg');
+    d3.select(elements).append('svg')
+      .style('width', this.width, 'important')
+      .style('height', this.height, 'important');
   }
 }
