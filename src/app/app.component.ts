@@ -18,8 +18,29 @@ export class AppComponent implements OnInit {
   width = '800';
   height = '600';
 
+  dataset: any = [
+    {
+      id: 1,
+      date: 'October 1, 2019 at 4:00PM',
+      distance: 5.2
+    },
+    {
+      id: 2,
+      date: 'October 4, 2019 at 5:00PM',
+      distance: 7.0275
+    },
+    {
+      id: 3,
+      date: 'October 15, 2019 at 6:00PM',
+      distance: 8.269
+    }
+  ];
+
 
   ngOnInit(): void {
+
+    console.log(this.dataset);
+
     const elements = this.chartContainer.nativeElement;
     d3.select(elements).append('svg')
       // .style('width', this.width, 'important')
