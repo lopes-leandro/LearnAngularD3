@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   width = '800';
   height = '600';
 
-  dataset: any = [
+  dataset: any[] = [
     {
       id: 1,
       date: 'October 1, 2019 at 4:00PM',
@@ -47,5 +47,10 @@ export class AppComponent implements OnInit {
       // .style('height', this.height, 'important')
       .attr('width', this.width)
       .attr('height', this.height);
+
+    this.dataset.forEach(el => {
+      d3.select('svg').append('circle');
+    });
+
   }
 }
