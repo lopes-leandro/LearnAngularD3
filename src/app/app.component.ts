@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   // width = '800px';
   // height = '600px';
 
-  width = '800';
-  height = '600';
+  width = 800;
+  height = 600;
 
   dataset: any[] = [
     {
@@ -51,6 +51,21 @@ export class AppComponent implements OnInit {
     this.dataset.forEach(el => {
       d3.select('svg').append('circle');
     });
+
+    // creating a vertical linear scale
+    const yScale = d3.scaleLinear();
+    yScale.domain([0, 10]);
+    yScale.range([this.height, 0]);
+
+    // você pode obter o domínio sempre que quiser assim
+    // console.log(yScale.domain());
+    // você pode obter o range sempre que quiser assim
+    // console.log(yScale.range());
+    // você converte um ponto de dado em um ponto visual
+    // console.log(yScale(5.9));
+    // você converte um ponto visual em um valor de dado
+    // console.log(yScale.invert(29));
+
 
   }
 }
