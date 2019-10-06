@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   width = 800;
   height = 600;
 
-  dataset: any[] = [
+  dataset = [
     {
       id: 1,
       date: 'October 1, 2019 at 4:00PM',
@@ -66,6 +66,13 @@ export class AppComponent implements OnInit {
     // você converte um ponto visual em um valor de dado
     // console.log(yScale.invert(29));
 
+    // passando valores státicos para os elementos selecionados
+    // d3.selectAll('circle').attr('cy', 300);
 
+    d3.selectAll('circle').data(this.dataset)
+      .attr('cy', (datum, index) => {
+        console.log(index);
+        return yScale(datum.distance);
+      });
   }
 }
