@@ -1,3 +1,6 @@
+body {
+    margin:  20px 40px;
+}
 circle {
     r: 5;
     fill: black
@@ -5,4 +8,5 @@ circle {
 
 svg {
     border: 1px solid black;
+    overflow: visible;
 }
