@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     },
     {
       id: 3,
-      date: 'October 15, 2019 at 6:00PM',
+      date: 'October 9, 2019 at 6:00PM',
       distance: 8.269
     }
   ];
@@ -54,8 +54,25 @@ export class AppComponent implements OnInit {
 
     // creating a vertical linear scale
     const yScale = d3.scaleLinear();
-    yScale.domain([0, 10]);
     yScale.range([this.height, 0]);
+
+    // TODO: yScale.domain() implementado anteriormente
+    // yScale.domain([0, 10]);
+
+    // TODO: Opção para calcular a escala mínima e máxima do domínio
+    // const yMin = d3.min(this.dataset, (data, index) => {
+    //   // compara a propriedade distância da interação do item em uma matriz de dados
+    //   return data.distance;
+    // });
+    // const yMax = d3.max(this.dataset, (data, index) => {
+    //   // compara a propriedade distância da interação do item em uma matriz de dados
+    //   return data.distance;
+    // });
+
+    const yDomain = d3.extent(this.dataset, (data, index) => {
+      return data.distance;
+    });
+    yScale.domain(yDomain);
 
     // você pode obter o domínio sempre que quiser assim
     // console.log(yScale.domain());
@@ -75,15 +92,19 @@ export class AppComponent implements OnInit {
         return yScale(datum.distance);
       });
 
-    // scaleTime(): mapea valor dos dados com pontos visuais numéricos; 
-    const xScale = d3.scaleTime();
-    xScale.range([0, this.width]);
-    xScale.domain([new Date('2019-10-1'), new Date('2019-10-31')]);
-    // console.log(xScale(new Date('2019-10-15')));
-    // console.log(xScale.invert(371.54811715481173));
-
+    // scaleTime(): mapea valor dos dados com pontos visuais numéricos;
     const parseTime = d3.timeParse('%B%e, %Y at %-I:%M%p');
     const formatTime = d3.timeFormat('%B%e, %Y at %-I:%M%p');
+    const xScale = d3.scaleTime();
+    xScale.range([0, this.width]);
+    // TODO: xScale.domain() implementado anteriormente
+    // xScale.domain([new Date('2019-10-1'), new Date('2019-10-31')]);
+    // console.log(xScale(new Date('2019-10-15')));
+    // console.log(xScale.invert(371.54811715481173));
+    const xDomain = d3.extent(this.dataset, (data, index) => {
+      return parseTime(data.date);
+    });
+    xScale.domain(xDomain);
 
     d3.selectAll('circle').data(this.dataset)
       .attr('cx', (datum, index) => {
