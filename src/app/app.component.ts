@@ -80,5 +80,17 @@ export class AppComponent implements OnInit {
         return xScale(parseTime(datum.date));
       });
 
+    // TODO: Cria o eixo x
+    const bottomAxis = d3.axisBottom(xScale);
+    d3.select('svg')
+      .append('g')
+      .call(bottomAxis)
+      .attr('transform', 'translate(0, ' + this.height + ')');
+
+    // TODO: cria o eixo y
+    const leftAxis = d3.axisLeft(yScale);
+    d3.select('svg')
+      .append('g')
+      .call(leftAxis);
   }
 }
