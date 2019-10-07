@@ -82,5 +82,13 @@ export class AppComponent implements OnInit {
     // console.log(xScale(new Date('2019-10-15')));
     // console.log(xScale.invert(371.54811715481173));
 
+    const parseTime = d3.timeParse('%B%e, %Y at %-I:%M%p');
+    const formatTime = d3.timeFormat('%B%e, %Y at %-I:%M%p');
+
+    d3.selectAll('circle').data(this.dataset)
+      .attr('cx', (datum, index) => {
+        return xScale(parseTime(datum.date));
+      });
+
   }
 }
