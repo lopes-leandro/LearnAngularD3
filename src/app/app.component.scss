@@ -1,12 +1,26 @@
 body {
-    margin:  20px 40px;
+  margin: 20px 40px;
 }
+
 circle {
-    r: 5;
-    fill: black
+  r: 5;
+  fill: black
 }
 
 svg {
-    border: 1px solid black;
-    overflow: visible;
+  border: 1px solid black;
+  overflow: visible;
+  margin-bottom: 50px;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
 }
